@@ -1044,9 +1044,11 @@ int main(int argc, char** argv)
 					test_mode = USE_PS3;
 					break;
 				case 's':
-					// Microsoft Sidewinder Precision Pro Joystick - 1 HID interface
-					VID = 0x045E;
-					PID = 0x0008;
+					if (!VID && !PID) {
+						// Microsoft Sidewinder Precision Pro Joystick - 1 HID interface
+						VID = 0x045E;
+						PID = 0x0008;
+					}
 					test_mode = USE_HID;
 					break;
 				case 'x':
@@ -1087,7 +1089,7 @@ int main(int argc, char** argv)
 		printf("   -k      : test Mass Storage device\n");
 		printf("   -b file : dump Mass Storage data to file 'file'\n");
 		printf("   -p      : test Sony PS3 SixAxis controller\n");
-		printf("   -s      : test Microsoft Sidewinder Precision Pro (HID)\n");
+		printf("   -s      : test Microsoft Sidewinder Precision Pro (HID) or generic HID device test with vid:pid \n");
 		printf("   -x      : test Microsoft XBox Controller Type S\n");
 		printf("   -l lang : language to report errors in (ISO 639-1)\n");
 		printf("   -w      : force the use of device requests when querying WCID descriptors\n");
